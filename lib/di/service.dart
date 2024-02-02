@@ -3,6 +3,7 @@ import 'package:cats_ca/features/cats/data/repository/cat_repository_impl.dart';
 import 'package:cats_ca/features/cats/domain/repository/cat_repository.dart';
 import 'package:cats_ca/features/cats/domain/usecases/get_cat_by_name_usecase.dart';
 import 'package:cats_ca/features/cats/domain/usecases/get_cats_remote_usecase.dart';
+import 'package:cats_ca/features/cats/presentation/bloc/cat/remote/remote_cat_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -26,6 +27,7 @@ Future<void> init() async {
   //Repo -> repository repositoryimpl datasource (local, remote)
 
   //Blocs
+  service.registerFactory<RemoteCatsBloc>(() => RemoteCatsBloc(service()));
 
   //external -> hive sp
 }

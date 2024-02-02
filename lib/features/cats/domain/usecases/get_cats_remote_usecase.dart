@@ -9,7 +9,7 @@ class GetCatsRemoteUsecase implements UseCase<DataState<List<CatEntity>>, int> {
   GetCatsRemoteUsecase(this._catRepository);
 
   @override
-  Future<DataState<List<CatEntity>>> call({int ? params}) async {
-    return await _catRepository.getCatsRemote(playfulness: params!);
+  Future<DataState<List<CatEntity>>> call({int params = 5}) async {
+    return await _catRepository.getCatsRemote(playfulness: params);
   }
 }

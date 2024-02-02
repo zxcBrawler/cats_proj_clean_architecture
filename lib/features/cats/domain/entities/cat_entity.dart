@@ -20,10 +20,10 @@ class CatEntity extends Equatable {
       intelligence; // How inteliggent this breed is from 1 to 5, where 1 - silly, 5 - Albert Einshtein
   final int?
       otherPetsFriendly; // How well the cat gets along with other pets in the household (for example, dogs). Possible values: 1, 2, 3, 4, 5, where 1 indicates the cat isn't very friendly to other pets and 5 indicates the cat gets along very well with other pets
-  final int? minWeight; // minimum weight in pounds.
-  final int? maxWeight; // maximum weight in pounds.
-  final int? minLifeExpectancy; //  minimum life expectancy in years.
-  final int? maxLifeExpectancy; // maximum life expectancy in years.
+  final double? minWeight; // minimum weight in pounds.
+  final double? maxWeight; // maximum weight in pounds.
+  final double? minLifeExpectancy; //  minimum life expectancy in years.
+  final double? maxLifeExpectancy; // maximum life expectancy in years.
   final String? name; //  the name of cat breed.
 
   const CatEntity(

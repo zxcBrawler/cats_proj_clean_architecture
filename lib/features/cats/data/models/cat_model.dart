@@ -13,10 +13,10 @@ class CatModel extends CatEntity {
       int? grooming,
       int? intelligence,
       int? otherPetsFriendly,
-      int? minWeight,
-      int? maxWeight,
-      int? minLifeExpectancy,
-      int? maxLifeExpectancy,
+      double? minWeight,
+      double? maxWeight,
+      double? minLifeExpectancy,
+      double? maxLifeExpectancy,
       String? name})
       : super(
           length: length,
