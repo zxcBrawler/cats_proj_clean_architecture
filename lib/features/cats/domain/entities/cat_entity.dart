@@ -17,7 +17,7 @@ class CatEntity extends Equatable {
   final int?
       grooming; //  How much work is required to properly groom the cat. Possible values: 1, 2, 3, 4, 5, where 1 indicates maximum grooming effort and 5 indicates minimum grooming effort.
   final int?
-      intelligence; // How inteliggent this breed is from 1 to 5, where 1 - silly, 5 - Albert Einshtein
+      intelligence; // How inteligent this breed is from 1 to 5, where 1 - silly, 5 - Albert Einshtein
   final int?
       otherPetsFriendly; // How well the cat gets along with other pets in the household (for example, dogs). Possible values: 1, 2, 3, 4, 5, where 1 indicates the cat isn't very friendly to other pets and 5 indicates the cat gets along very well with other pets
   final double? minWeight; // minimum weight in pounds.

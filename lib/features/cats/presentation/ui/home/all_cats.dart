@@ -1,24 +1,42 @@
-import 'package:cats_ca/features/cats/presentation/bloc/cat/remote/remote_cat_bloc.dart';
-import 'package:cats_ca/features/cats/presentation/bloc/cat/remote/remote_cat_state.dart';
-import 'package:cats_ca/features/cats/presentation/widget/cat_card.dart';
+import 'package:cats_ca/features/cats/presentation/ui/catinfo/cat_info.dart';
+import 'package:cats_ca/features/cats/presentation/widget/app_bar.dart';
+import 'package:cats_ca/features/cats/presentation/widget/placeholder_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../bloc/cats/remote/remote_cat_bloc.dart';
+import '../../bloc/cats/remote/remote_cat_state.dart';
+import '../../widget/cat_card.dart';
+import '../../widget/drawer.dart';
 
-class AllCats extends StatelessWidget {
+class AllCats extends StatefulWidget {
   const AllCats({super.key});
+
+  @override
+  State<AllCats> createState() => _AllCatsState();
+}
+
+class _AllCatsState extends State<AllCats> {
+  bool crossfade = false;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppbar(),
       body: _buildCatsList(),
+      drawer: _buildDrawer(),
     );
   }
 
   _buildAppbar() {
-    return AppBar(
-      title: const Text('Cats app'),
-    );
+    return catsAppBar();
+  }
+
+  _buildDrawer() {
+    return const CatsDrawer();
   }
 
   _buildCatsList() {
@@ -38,13 +56,32 @@ class AllCats extends StatelessWidget {
             );
           }
           if (state is RemoteCatsDone) {
+            Future.delayed(const Duration(seconds: 2), () {
+              setState(() {
+                crossfade = true;
+              });
+            });
             return SliverGrid(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return GestureDetector(
-                      onTap: () {},
-                      child: CatCard(
-                        cat: state.cats![index],
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  CatInfo(cat: state.cats![index]),
+                            ));
+                      },
+                      child: AnimatedCrossFade(
+                        firstChild: CatCard(
+                          cat: state.cats![index],
+                        ),
+                        secondChild: buildPlaceholder(),
+                        crossFadeState: crossfade
+                            ? CrossFadeState.showFirst
+                            : CrossFadeState.showSecond,
+                        duration: const Duration(seconds: 2),
                       ));
                 },
                 childCount: state.cats!.length,

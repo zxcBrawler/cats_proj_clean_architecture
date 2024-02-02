@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cats_ca/features/cats/domain/entities/cat_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -20,11 +21,24 @@ class CatCard extends StatelessWidget {
           ClipRRect(
             borderRadius:
                 const BorderRadius.vertical(top: Radius.circular(16.0)),
-            child: Image.network(
-              cat!.imageLink!,
-              fit: BoxFit.cover,
-              height: 155.0,
+            child: CachedNetworkImage(
+              height: 155,
+              imageUrl: cat!.imageLink!,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
+            //Image.network(
+            //   cat!.imageLink!,
+            //   fit: BoxFit.cover,
+            //   height: 155.0,
+            // ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -32,7 +46,7 @@ class CatCard extends StatelessWidget {
               child: Text(
                 cat!.name!,
                 style: const TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),

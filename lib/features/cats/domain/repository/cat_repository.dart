@@ -3,8 +3,9 @@ import 'package:cats_ca/features/cats/domain/entities/cat_entity.dart';
 
 abstract class CatRepository {
   // Api Calls
-  Future<DataState<List<CatEntity>>> getCatsRemote({int playfulness});
-  Future<DataState<CatEntity>> getOneCat(String name);
+  Future<DataState<List<CatEntity>>> getCatsRemote(
+      {int
+          playfulness}); // cannot get all cats from this API, so i choose random parameter to show some cats at the main screen
 
   // Hive DB Calls
   Future<List<CatEntity>> getCatsLocal();
