@@ -32,13 +32,9 @@ class CatCard extends StatelessWidget {
                   ),
                 ),
               ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
-            //Image.network(
-            //   cat!.imageLink!,
-            //   fit: BoxFit.cover,
-            //   height: 155.0,
-            // ),
+            
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -55,6 +51,6 @@ class CatCard extends StatelessWidget {
         ],
       ),
     );
-    ;
+    
   }
 }

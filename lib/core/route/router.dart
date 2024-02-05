@@ -1,3 +1,7 @@
+import 'package:cats_ca/features/cats/domain/entities/cat_entity.dart';
+import 'package:cats_ca/features/cats/presentation/ui/catinfo/cat_info.dart';
+import 'package:cats_ca/features/cats/presentation/ui/home/pages/cat_category.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,19 +14,24 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 final router =
     GoRouter(initialLocation: '/', navigatorKey: _rootNavigatorKey, routes: [
-GoRoute(
+  GoRoute(
     parentNavigatorKey: _rootNavigatorKey,
     path: '/catDetails',
+    builder: (context, state) {
+      Set<CatEntity> cat = state.extra as Set<CatEntity>;
+      return CatInfo(cat: cat.first);
+    },
+  ),
+  GoRoute(
+    parentNavigatorKey: _rootNavigatorKey,
+    path: '/catCategory',
     pageBuilder: (context, state) {
-      return NoTransitionPage(
-        key: UniqueKey(),
-        child: Scaffold(
-          appBar: AppBar(),
-          body: const Center(
-            child: Text(""),
-          ),
-        ),
-      );
+      int value = state.extra as int;
+
+      return CupertinoPage(
+          child: CatCategory(
+        value: value,
+      ));
     },
   ),
   ShellRoute(
@@ -59,5 +68,4 @@ GoRoute(
       ),
     ],
   ),
-  
 ]);

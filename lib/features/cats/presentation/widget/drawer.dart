@@ -1,3 +1,4 @@
+import 'package:cats_ca/core/route/router.dart';
 import 'package:cats_ca/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -28,20 +29,24 @@ class _CatsDrawerState extends State<CatsDrawer> {
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
-              
+              Navigator.pop(context);
+              router.go('/');
             },
           ),
           ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('Facts about cats'),
-            onTap: () {},
+            leading: const Icon(Icons.favorite),
+            title: const Text('Favourite cats'),
+            onTap: () {
+              Navigator.pop(context);
+              router.go('/favourite');
+            },
           ),
           ListTile(
             leading: const Icon(Icons.shuffle),
-            title: const Text('Get random cat'),
+            title: const Text('Cats by different merits'),
             onTap: () {
-              // Random random = Random();
-              // int randomCat = random.nextInt(8);
+              Navigator.pop(context);
+              router.go('/categories');
             },
           ),
         ],

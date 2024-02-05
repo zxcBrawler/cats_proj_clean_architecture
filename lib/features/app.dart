@@ -1,7 +1,7 @@
 import 'package:cats_ca/core/theme/theme.dart';
 import 'package:cats_ca/features/cats/domain/repository/cat_repository.dart';
-import 'package:cats_ca/features/cats/presentation/bloc/cats/remote/remote_cat_bloc.dart';
-import 'package:cats_ca/features/cats/presentation/bloc/cats/remote/remote_cat_event.dart';
+import 'package:cats_ca/features/cats/presentation/bloc/cats/remote/allcats/remote_cat_bloc.dart';
+import 'package:cats_ca/features/cats/presentation/bloc/cats/remote/allcats/remote_cat_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,8 +15,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => CatRepository,
-      child: BlocProvider<RemoteCatsBloc>(
-        create: (context) => service()..add(const GetCats()),
+      
         child: MaterialApp.router(
           routerDelegate: router.routerDelegate,
           routeInformationParser: router.routeInformationParser,
@@ -24,7 +23,7 @@ class App extends StatelessWidget {
           theme: myTheme,
           debugShowCheckedModeBanner: false,
         ),
-      ),
+      
     );
   }
 }

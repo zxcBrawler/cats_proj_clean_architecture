@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
 
-class BuildFilterChips {
+class FilterChips extends StatefulWidget {
+  final List<int> filterOptions;
+  final ValueChanged<int> onItemSelected;
 
-  static Widget buildFilterChips({
-    required String title,
-    required List<String> filterOptions,
-    required List<String> selectedFilters,
-    required Function(String, bool) onFilterSelected,
-  }) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-        ),
-        Wrap(
-          spacing: 8.0,
-          children: filterOptions.map((filter) {
-            return FilterChip(
-              label: Text(filter),
-              selected: selectedFilters.contains(filter),
-              onSelected: (bool selected) {
-                onFilterSelected(filter, selected);
-              },
-            );
-          }).toList(),
-        ),
-      ],
+  const FilterChips({
+    Key? key,
+    required this.filterOptions,
+    required this.onItemSelected,
+  }) : super(key: key);
+
+  @override
+  _FilterChipsState createState() => _FilterChipsState();
+}
+
+class _FilterChipsState extends State<FilterChips> {
+  late int selectedItemId;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedItemId = widget.filterOptions.isNotEmpty ? widget.filterOptions.first : -1;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 8.0,
+      children: widget.filterOptions
+          .map((option) => FilterChip(
+                label: Text(option.toString()),
+                selected: option == selectedItemId,
+                onSelected: (bool selected) {
+                  setState(() {
+                    selectedItemId = selected ? option : -1;
+                    widget.onItemSelected(selectedItemId);
+                  });
+                },
+              ))
+          .toList(),
     );
   }
 }

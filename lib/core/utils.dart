@@ -1,7 +1,4 @@
 const List<String> categories = [
-  'family friendly',
-  'intelligence',
-  'general health',
   'shedding'
 ];
 

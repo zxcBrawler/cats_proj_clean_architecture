@@ -58,14 +58,14 @@ class _CatsApiService implements CatsApiService {
   }
 
   @override
-  Future<HttpResponse<List<CatModel>>> getCatsFamilyFriendly({
+  Future<HttpResponse<List<CatModel>>> getCatsGrooming({
     String? apiKey,
-    int? familyFriendly,
+    int? grooming,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'X-Api-Key': apiKey,
-      r'family_friendly': familyFriendly,
+      r'grooming': grooming,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -78,7 +78,7 @@ class _CatsApiService implements CatsApiService {
     )
             .compose(
               _dio.options,
-              'family_friendly={family_friendly}',
+              'grooming={grooming}',
               queryParameters: queryParameters,
               data: _data,
             )
