@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cats_ca/features/cats/domain/entities/cat_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';

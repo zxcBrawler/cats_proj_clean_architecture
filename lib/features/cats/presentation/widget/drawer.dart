@@ -11,7 +11,7 @@ class CatsDrawer extends StatefulWidget {
 class _CatsDrawerState extends State<CatsDrawer> {
   @override
   Widget build(BuildContext context) {
-     return Drawer(
+    return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -27,7 +27,9 @@ class _CatsDrawerState extends State<CatsDrawer> {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
-            onTap: () {},
+            onTap: () {
+              
+            },
           ),
           ListTile(
             leading: const Icon(Icons.info),

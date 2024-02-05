@@ -1,12 +1,10 @@
 import 'package:cats_ca/features/cats/presentation/ui/catinfo/cat_info.dart';
-import 'package:cats_ca/features/cats/presentation/widget/app_bar.dart';
 import 'package:cats_ca/features/cats/presentation/widget/placeholder_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../bloc/cats/remote/remote_cat_bloc.dart';
-import '../../bloc/cats/remote/remote_cat_state.dart';
-import '../../widget/cat_card.dart';
-import '../../widget/drawer.dart';
+import '../../../bloc/cats/remote/remote_cat_bloc.dart';
+import '../../../bloc/cats/remote/remote_cat_state.dart';
+import '../../../widget/cat_card.dart';
 
 class AllCats extends StatefulWidget {
   const AllCats({super.key});
@@ -25,18 +23,8 @@ class _AllCatsState extends State<AllCats> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppbar(),
       body: _buildCatsList(),
-      drawer: _buildDrawer(),
     );
-  }
-
-  _buildAppbar() {
-    return catsAppBar();
-  }
-
-  _buildDrawer() {
-    return const CatsDrawer();
   }
 
   _buildCatsList() {
@@ -51,8 +39,10 @@ class _AllCatsState extends State<AllCats> {
             );
           }
           if (state is RemoteCatsError) {
-            return const Center(
-              child: Icon(Icons.refresh),
+            return const SliverToBoxAdapter(
+              child: Center(
+                child: Icon(Icons.refresh),
+              ),
             );
           }
           if (state is RemoteCatsDone) {
@@ -61,6 +51,7 @@ class _AllCatsState extends State<AllCats> {
                 crossfade = true;
               });
             });
+            
             return SliverGrid(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {

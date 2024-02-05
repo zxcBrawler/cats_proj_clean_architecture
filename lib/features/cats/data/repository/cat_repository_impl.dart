@@ -13,12 +13,11 @@ class CatRepositoryImpl implements CatRepository {
 
   CatRepositoryImpl(this._catsApiService);
 
-
-
   //API
 
   @override
-  Future<DataState<List<CatEntity>>> getCatsRemote({int playfulness = 5}) async {
+  Future<DataState<List<CatEntity>>> getCatsRemote(
+      {int playfulness = 4}) async {
     try {
       final httpResponse = await _catsApiService.getCats(
           apiKey: apiKey, playfulness: playfulness);
@@ -37,12 +36,72 @@ class CatRepositoryImpl implements CatRepository {
   }
 
   @override
-  Future<DataState<CatEntity>> getOneCat(String name) async {
+  Future<DataState<List<CatEntity>>> getCatsFamilyFriendly(
+      {int? familyFriendly}) async {
     try {
-      final httpResponse =
-          await _catsApiService.getCatByName(apiKey: apiKey, name: name);
+      final httpResponse = await _catsApiService.getCatsFamilyFriendly(
+          apiKey: apiKey, familyFriendly: familyFriendly);
       if (httpResponse.response.statusCode == HttpStatus.ok) {
-        return DataSuccess(httpResponse.data.single);
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
+  }
+
+  @override
+  Future<DataState<List<CatEntity>>> getCatsGeneralHealth(
+      {int? generalHealth}) async {
+    try {
+      final httpResponse = await _catsApiService.getCatsGeneralHealth(
+          apiKey: apiKey, generalHealth: generalHealth);
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
+  }
+
+  @override
+  Future<DataState<List<CatEntity>>> getCatsIntelligence(
+      {int? intelligence}) async {
+    try {
+      final httpResponse = await _catsApiService.getCatsIntelligence(
+          apiKey: apiKey, intelligence: intelligence);
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
+  }
+
+  @override
+  Future<DataState<List<CatEntity>>> getCatsShedding({int? shedding}) async {
+    try {
+      final httpResponse = await _catsApiService.getCatsShedding(
+          apiKey: apiKey, shedding: shedding);
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
       } else {
         return DataFailed(DioException(
             error: httpResponse.response.statusMessage,

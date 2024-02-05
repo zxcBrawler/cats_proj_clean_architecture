@@ -7,6 +7,11 @@ abstract class CatRepository {
       {int
           playfulness}); // cannot get all cats from this API, so i choose random parameter to show some cats at the main screen
 
+  Future<DataState<List<CatEntity>>> getCatsFamilyFriendly(
+      {int familyFriendly});
+  Future<DataState<List<CatEntity>>> getCatsShedding({int shedding});
+  Future<DataState<List<CatEntity>>> getCatsIntelligence({int intelligence});
+  Future<DataState<List<CatEntity>>> getCatsGeneralHealth({int generalHealth});
   // Hive DB Calls
   Future<List<CatEntity>> getCatsLocal();
   Future<void> saveCat(CatEntity catEntity);

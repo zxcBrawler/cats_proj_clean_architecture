@@ -1,7 +1,8 @@
+import 'package:cats_ca/core/constants/constants.dart';
 import 'package:cats_ca/features/cats/data/models/cat_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import '../../../../../core/constants/constants.dart';
+
 
 part 'cats_api_service.g.dart';
 
@@ -14,10 +15,26 @@ abstract class CatsApiService {
     @Query("X-Api-Key") String? apiKey,
     @Query("playfulness") int? playfulness,
   });
-
-  @GET('name="{name}"')
-  Future<HttpResponse<List<CatModel>>> getCatByName({
+  @GET('family_friendly={family_friendly}')
+  Future<HttpResponse<List<CatModel>>> getCatsFamilyFriendly({
     @Query("X-Api-Key") String? apiKey,
-    @Query("name") String? name,
+    @Query("family_friendly") int? familyFriendly,
+  });
+
+  @GET('shedding={shedding}')
+  Future<HttpResponse<List<CatModel>>> getCatsShedding({
+    @Query("X-Api-Key") String? apiKey,
+    @Query("shedding") int? shedding,
+  });
+  @GET('intelligence={intelligence}')
+  Future<HttpResponse<List<CatModel>>> getCatsIntelligence({
+    @Query("X-Api-Key") String? apiKey,
+    @Query("intelligence") int? intelligence,
+  });
+
+  @GET('general_health={general_health}')
+  Future<HttpResponse<List<CatModel>>> getCatsGeneralHealth({
+    @Query("X-Api-Key") String? apiKey,
+    @Query("general_health") int? generalHealth,
   });
 }

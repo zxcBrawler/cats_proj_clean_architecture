@@ -5,8 +5,8 @@ import 'package:cats_ca/features/cats/presentation/bloc/cats/remote/remote_cat_e
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../core/route/router.dart';
 import '../di/service.dart';
-import 'cats/presentation/ui/home/all_cats.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -17,12 +17,18 @@ class App extends StatelessWidget {
       create: (context) => CatRepository,
       child: BlocProvider<RemoteCatsBloc>(
         create: (context) => service()..add(const GetCats()),
-        child: MaterialApp(
+        child: MaterialApp.router(
+          routerDelegate: router.routerDelegate,
+          routeInformationParser: router.routeInformationParser,
+          routeInformationProvider: router.routeInformationProvider,
           theme: myTheme,
           debugShowCheckedModeBanner: false,
-          home: const AllCats(),
         ),
       ),
     );
   }
 }
+
+// BlocProvider<RemoteCatsBloc>(
+//         create: (context) => service()..add(const GetCats(4)),
+
