@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:cats_ca/core/resources/data_state.dart';
-import 'package:cats_ca/core/utils.dart';
 import 'package:cats_ca/features/cats/data/data_sources/local/cats_database.dart';
 import 'package:cats_ca/features/cats/data/data_sources/remote/cats_api_service.dart';
 import 'package:cats_ca/features/cats/data/models/cat_model.dart';
@@ -58,7 +56,8 @@ class CatRepositoryImpl implements CatRepository {
     }
   }
 
-  //Hive DB
+  
+  //Floor DB
   @override
   Future<void> saveCat(CatEntity catEntity) {
     return _catsDatabase.catDao.addCat(CatModel.fromEntity(catEntity));

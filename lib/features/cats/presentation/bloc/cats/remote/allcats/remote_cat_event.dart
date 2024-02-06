@@ -1,5 +1,5 @@
 abstract class RemoteCatsEvent {
-  final int? param;
+  final dynamic param;
   const RemoteCatsEvent({this.param});
 
   List<Object> get props => [param!];
@@ -19,4 +19,8 @@ class GetCatsGeneralHealth extends RemoteCatsEvent {
 
 class GetCatsShedding extends RemoteCatsEvent {
   const GetCatsShedding(int param) : super(param: param);
+}
+
+class GetCatsByName extends RemoteCatsEvent {
+  const GetCatsByName(String param) : super(param: param);
 }

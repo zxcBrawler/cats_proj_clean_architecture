@@ -20,4 +20,5 @@ abstract class CatsApiService {
     @Query("X-Api-Key") String? apiKey,
     @Query("shedding") int? shedding,
   });
+   
 }

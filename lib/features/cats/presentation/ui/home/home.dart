@@ -2,7 +2,6 @@ import 'package:cats_ca/features/cats/presentation/widget/custom_bottom_nav_item
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../widget/app_bar.dart';
 import '../../widget/drawer.dart';
 
 class Home extends StatefulWidget {
@@ -20,15 +19,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppbar(),
+      appBar: AppBar(title: const Text('My cat app')),
       body: SafeArea(child: widget.child),
       bottomNavigationBar: _buildBottomNav(),
       drawer: _buildDrawer(),
     );
-  }
-
-  _buildAppbar() {
-    return catsAppBar();
   }
 
   _buildDrawer() {

@@ -4,7 +4,6 @@ import 'package:cats_ca/features/cats/domain/entities/cat_entity.dart';
 import 'package:cats_ca/features/cats/presentation/bloc/cats/local/local_cat_bloc.dart';
 import 'package:cats_ca/features/cats/presentation/bloc/cats/local/local_cat_event.dart';
 import 'package:cats_ca/features/cats/presentation/bloc/cats/local/local_cat_state.dart';
-import 'package:cats_ca/features/cats/presentation/bloc/cats/remote/allcats/remote_cat_event.dart';
 import 'package:cats_ca/features/cats/presentation/widget/cat_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,10 +42,23 @@ class _FavouriteCatsState extends State<FavouriteCats> {
   Widget _buildArticlesList(List<CatEntity> cats) {
     if (cats.isEmpty) {
       return const Center(
-          child: Text(
-        'No saved cats',
-        style: TextStyle(color: Colors.white),
-      ));
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, 
+          crossAxisAlignment:
+              CrossAxisAlignment.center, 
+          children: [
+            Icon(
+              Icons.sentiment_dissatisfied,
+              size: 40,
+            ),
+            Text(
+              "no favourite cats",
+              style: TextStyle(fontSize: 30),
+            ),
+            // Add more widgets as needed
+          ],
+        ),
+      );
     }
 
     return ListView.builder(

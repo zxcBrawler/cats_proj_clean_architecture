@@ -16,9 +16,9 @@ final router =
   GoRoute(
     parentNavigatorKey: _rootNavigatorKey,
     path: '/catDetails',
-    builder: (context, state) {
+    pageBuilder: (context, state) {
       Set<CatEntity> cat = state.extra as Set<CatEntity>;
-      return CatInfo(cat: cat.first);
+      return CupertinoPage(child: CatInfo(cat: cat.first));
     },
   ),
   GoRoute(

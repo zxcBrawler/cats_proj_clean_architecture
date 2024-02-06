@@ -18,7 +18,7 @@ class _CatsDrawerState extends State<CatsDrawer> {
         children: [
           UserAccountsDrawerHeader(
             accountEmail: const Text('best cats here!'),
-            currentAccountPicture: Image.asset('assets/images/pet-love.png'),
+            currentAccountPicture: Image.asset('assets/pet-love.png'),
             accountName: const Text(
               'My cats app',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

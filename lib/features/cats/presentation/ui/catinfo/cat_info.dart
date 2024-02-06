@@ -106,8 +106,9 @@ class _CatInfoWidgetState extends State<CatInfoWidget> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _onAddFavouriteCat(context);
+          Navigator.pop(context);
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.favorite),
       ),
     );
   }
