@@ -8,7 +8,7 @@ abstract class CatRepository {
           playfulness}); // cannot get all cats from this API, so i choose random parameter to show some cats at the main screen
 
   Future<DataState<List<CatEntity>>> getCatsShedding({int shedding});
-  // Hive DB Calls
+  // Floor DB Calls
   Future<List<CatEntity>> getCatsLocal();
   Future<void> saveCat(CatEntity catEntity);
   Future<void> deleteCat(CatEntity catEntity);

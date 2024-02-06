@@ -1,8 +1,7 @@
 import 'package:cats_ca/features/cats/domain/entities/cat_entity.dart';
 import 'package:cats_ca/features/cats/presentation/ui/catinfo/cat_info.dart';
-import 'package:cats_ca/features/cats/presentation/ui/home/pages/cat_category.dart';
+import 'package:cats_ca/features/cats/presentation/ui/home/cat_category.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/cats/presentation/ui/home/home.dart';

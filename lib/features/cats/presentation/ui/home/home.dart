@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
       drawer: _buildDrawer(),
     );
   }
-  
+
   _buildAppbar() {
     return catsAppBar();
   }
@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
       initialLocation: '/',
     ),
     CustomBottomNavItem(
-      icon: Icon(Icons.favorite_outline),
+      icon: Icon(Icons.favorite),
       label: 'Favourite cats',
       initialLocation: '/favourite',
     ),
@@ -84,4 +84,3 @@ class _HomeState extends State<Home> {
     // }
   }
 }
-

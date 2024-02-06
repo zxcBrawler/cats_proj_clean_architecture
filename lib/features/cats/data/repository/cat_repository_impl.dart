@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:cats_ca/core/resources/data_state.dart';
+import 'package:cats_ca/core/utils.dart';
+import 'package:cats_ca/features/cats/data/data_sources/local/cats_database.dart';
 import 'package:cats_ca/features/cats/data/data_sources/remote/cats_api_service.dart';
+import 'package:cats_ca/features/cats/data/models/cat_model.dart';
 import 'package:cats_ca/features/cats/domain/entities/cat_entity.dart';
 import 'package:cats_ca/features/cats/domain/repository/cat_repository.dart';
 import 'package:dio/dio.dart';
@@ -10,8 +13,9 @@ import '../../../../core/constants/constants.dart';
 
 class CatRepositoryImpl implements CatRepository {
   final CatsApiService _catsApiService;
+  final CatsDatabase _catsDatabase;
 
-  CatRepositoryImpl(this._catsApiService);
+  CatRepositoryImpl(this._catsApiService, this._catsDatabase);
 
   //API
 
@@ -35,8 +39,6 @@ class CatRepositoryImpl implements CatRepository {
     }
   }
 
- 
-
   @override
   Future<DataState<List<CatEntity>>> getCatsShedding({int? shedding}) async {
     try {
@@ -59,19 +61,16 @@ class CatRepositoryImpl implements CatRepository {
   //Hive DB
   @override
   Future<void> saveCat(CatEntity catEntity) {
-    // TODO: implement saveCat
-    throw UnimplementedError();
+    return _catsDatabase.catDao.addCat(CatModel.fromEntity(catEntity));
   }
 
   @override
   Future<void> deleteCat(CatEntity catEntity) {
-    // TODO: implement deleteCat
-    throw UnimplementedError();
+    return _catsDatabase.catDao.deleteCat(CatModel.fromEntity(catEntity));
   }
 
   @override
-  Future<List<CatEntity>> getCatsLocal() {
-    // TODO: implement getCatsLocal
-    throw UnimplementedError();
+  Future<List<CatModel>> getCatsLocal() {
+    return _catsDatabase.catDao.getCats();
   }
 }

@@ -34,7 +34,6 @@ class CatCard extends StatelessWidget {
               ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
-            
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -51,6 +50,6 @@ class CatCard extends StatelessWidget {
         ],
       ),
     );
-    
   }
+
 }

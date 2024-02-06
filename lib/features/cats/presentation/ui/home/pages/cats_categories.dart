@@ -18,22 +18,28 @@ class _CatsCategoriesState extends State<CatsCategories> {
       body: ListView.builder(
         itemCount: categories.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              trailing: const Icon(Icons.chevron_right),
-              title: Text(
-                categories[index],
-                style: const TextStyle(fontSize: 18),
-              ),
-              onTap: () {
-                router.push('/catCategory', extra: selectedItemId);
-              },
-              subtitle: FilterChips(
-                filterOptions: values,
-                onItemSelected: (int value) {
-                  selectedItemId = value;
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: const Color.fromARGB(50, 237, 150, 189),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                trailing: const Icon(Icons.chevron_right),
+                title: Text(
+                  categories[index],
+                  style: const TextStyle(fontSize: 18),
+                ),
+                onTap: () {
+                  router.push('/catCategory', extra: selectedItemId);
                 },
+                subtitle: FilterChips(
+                  filterOptions: values,
+                  onItemSelected: (int value) {
+                    selectedItemId = value;
+                  },
+                ),
               ),
             ),
           );

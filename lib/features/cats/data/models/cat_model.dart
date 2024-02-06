@@ -1,5 +1,7 @@
 import 'package:cats_ca/features/cats/domain/entities/cat_entity.dart';
+import 'package:floor/floor.dart';
 
+@Entity(tableName: 'cat', primaryKeys: ['name'])
 class CatModel extends CatEntity {
   const CatModel(
       {String? length,
